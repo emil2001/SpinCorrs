@@ -1,5 +1,5 @@
 # Reconstruction of angular correlations in associated top-quark and DM mediator production
-This package is designed to reconstruct the neutrino and DM mediator momenta and conserve the angular correlations of the top-quark discussed in [Angular correlations in associated top-quark and dark matter production at Large Hadron Collider][1]. Several approaches are presented, which include BDT, MLP and Normalizing Flows neural networks. 
+This package is designed to reconstruct the neutrino and DM mediator momenta and conserve the angular correlations of the top-quark first discussed in [Angular correlations in associated top-quark and dark matter production at Large Hadron Collider][1]. Several approaches are presented, which include BDT, MLP and Normalizing Flows neural networks. 
 ![Cosine of the angle between the lepton and down-type quark in top-quark reference frame (TRF)](Title_fig.png)
 ## Data
 There are 4 different data samples in this project located in `data/`. First 2 samples: `SM.root` and `DM.root`, correspond to parton-level modelling, which was done in CompHEP4.6 for Standard Model and Simplified dark matter models respectively.
