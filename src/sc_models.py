@@ -124,17 +124,17 @@ class Basic_flow(Flow):
     """
     Parameters:
     
-    cond_size (int):
-    Number of conditioning variables (X for MLP)
-    
-    target_size (int):
-    Number of target variables
-    
-    num_layers (int, optional):
-    Number of autoregressive layers, default - 5
-    
-    encoder_config (tuple, optional):
-    Configuration of the encoder, (layer size, number of layers, dropout value), default - (200, 3, 0.1)
+        cond_size (int):
+        Number of conditioning variables (X for MLP)
+
+        target_size (int):
+        Number of target variables
+
+        num_layers (int, optional):
+        Number of autoregressive layers, default - 5
+
+        encoder_config (tuple, optional):
+        Configuration of the encoder, (layer size, number of layers, dropout value), default - (200, 3, 0.1)
     
     '''
     def __init__(self, cond_size, target_size, num_layers = 5, encoder_config  = (200, 3, 0.1)):
@@ -164,23 +164,23 @@ class Nu_flow(Flow):
     """
     Parameters:
     
-    encoder:
-    Context embedding function (or NN)
-    
-    target_size (int):
-    Number of target variables
-    
-    masking_order(list, optional):
-    Masking list of target variables with values +1 and -1, default - equal split
-    
-    num_layers (int, optional):
-    Number of flow layers, default - 5
-    
-    context_size (int, optional):
-    Number of conditioning variables, default - 32
-    
-    spline_conf (tuple, optional):
-    Configuration of the coupling network, (layer size, number of layers, dropout value), default - (128, 3, 0.1)
+        encoder:
+        Context embedding function (or NN)
+
+        target_size (int):
+        Number of target variables
+
+        masking_order(list, optional):
+        Masking list of target variables with values +1 and -1, default - equal split
+
+        num_layers (int, optional):
+        Number of flow layers, default - 5
+
+        context_size (int, optional):
+        Number of conditioning variables, default - 32
+
+        spline_conf (tuple, optional):
+        Configuration of the coupling network, (layer size, number of layers, dropout value), default - (128, 3, 0.1)
     
     ''' 
     def __init__(self, encoder, target_size, masking_order = None, num_layers = 5, context_size = 32, spline_conf = (128, 3, 0.1)):
