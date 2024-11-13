@@ -39,11 +39,11 @@ def calculate_cosine(pred, X):
     p4j2 = vector.arr({"px": p_q_x, "py": p_q_y, "pz": p_q_z, "E": E})
 
     #Mediator
-    pt_phi = np.array(pred[:, 3])
-    eta_phi = np.array(pred[:, 4])
-    phi_phi = np.array(pred[:, 5])
-    M = 400 * np.ones_like(pt_phi)
-    p4phi = vector.arr({"pt": pt_phi, "eta": eta_phi, "phi": phi_phi, "M": M})
+    p_phi_x = np.array(pred[:, 3])
+    p_phi_y = np.array(pred[:, 4])
+    p_phi_z = np.array(pred[:, 5])
+    M = 400 * np.ones_like(p_phi_x)
+    p4phi = vector.arr({"px": p_phi_x, "py": p_phi_y, "pz": p_phi_z, "M": M})
 
     p4W = p4Mu + p4nm
     p4top = p4W + p4j1 + p4phi
@@ -82,7 +82,7 @@ def calculate_cosine_theory(X, y):
     p_nu_x = np.array(y['p_nu_x'])
     p_nu_y = np.array(y['p_nu_y'])
     p_nu_z = np.array(y['p_nu_z'])
-    p4nm = vector.arr({"px": p_nu_x, "py": p_nu_y, "pz": p_nu_z, "M": np.zeros_like(pt_nu_rec)})
+    p4nm = vector.arr({"px": p_nu_x, "py": p_nu_y, "pz": p_nu_z, "M": np.zeros_like(p_nu_x)})
 
     #Lepton
     p_l_x = np.array(X['p_l_x'])
@@ -106,11 +106,11 @@ def calculate_cosine_theory(X, y):
     p4j2 = vector.arr({"px": p_q_x, "py": p_q_y, "pz": p_q_z, "E": E})
 
     #Mediator
-    pt_phi = np.array(y['pt_phi'])
-    eta_phi = np.array(y['eta_phi'])
-    phi_phi = np.array(y['phi_phi'])
-    M = 400 * np.ones_like(pt_phi_x)
-    p4phi = vector.arr({"pt": pt_phi, "eta": eta_phi, "phi": phi_phi, "M": M})
+    p_phi_x = np.array(y['p_phi_x'])
+    p_phi_y = np.array(y['p_phi_y'])
+    p_phi_z = np.array(y['p_phi_z'])
+    M = 400 * np.ones_like(p_phi_x)
+    p4phi = vector.arr({"px": p_phi_x, "py": p_phi_y, "pz": p_phi_z, "M": M})
 
     p4W = p4Mu + p4nm
     p4top = p4W + p4j1 + p4phi
