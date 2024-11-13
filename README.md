@@ -11,7 +11,14 @@ For each approach 3 different neural networks are compared: dense neural network
 - Basic flows model consists of Affine autoregressive transforms and represents one the simplest architectures. 
 - $\nu$-flows model follows the [original article][2], which developed the architecture for the similar task in $t\bar{t}$ production.
 
-All these models can be found in the `src\sc_models.py`. Note that use of the GPU is **strongly recommended**, especially for Normalizig Flows due to their complexity. Additionally, since the inference in these models requires sampling the probability distributions, it can take a significant time (around 5 minutes for 10 samples per data point).
+All these models can be found in the `src\sc_models.py`. Note that the use of the GPU is **strongly recommended**, especially for Normalizing Flows due to their complexity. Additionally, since the inference in these models requires sampling the probability distributions, it can take a significant time and memory.
+**Note**: for proper inference on GPUs, `pytorch-cuda>=12.1` is needed due to bugs in triangular solvers for older versions.
+
+Description of main parameters of $\nu$-flows:
+- `spline_conf`: coupling function, which in this case is a dense network with configurable structure
+- `target_size`: dimensionality of the targets. Here it is 6: 3 components of momentum per neutrino and mediator
+- `masking_order`: in the coupling layer, only part of the target features is transformed in each layer, with the partition alternating between layers. The `masking_order` variable specifies these features with 1, and others with -1 (for the first layer)
+- `encoder`: preprocessing of the context (embedding function)
 
 
 [1]:https://doi.org/10.1142/S0217751X24501264
