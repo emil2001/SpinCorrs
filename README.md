@@ -9,7 +9,7 @@ Basic data description is shown in `notebooks/FE.ipynb`.
 For the two approaches to data discussed above, separate notebooks are provided: `notebooks/SpinCorrs_regression_NF.ipynb` and `notebooks/SpinCorrs_delphes.ipynb`.
 For each approach 3 different neural networks are compared: dense neural network and 2 variations of Normalizing Flows. 
 - *Basic_flows* model consists of Affine autoregressive transforms and represents one the simplest architectures. 
-- *$\nu$_flows* model follows the [original article][2], which developed the architecture for the similar task in $t\Bar{t}$ production.
+- $\nu$-flows model follows the [original article][2], which developed the architecture for the similar task in $t\bar{t}$ production.
 
 
 [1]:https://doi.org/10.1142/S0217751X24501264
