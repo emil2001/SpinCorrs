@@ -2,17 +2,15 @@ import lightning as L
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torchmetrics.regression import MeanSquaredError, MeanAbsoluteError
 
+from torchmetrics.regression import MeanAbsoluteError
 from nflows.flows.base import Flow
 from nflows.distributions.normal import ConditionalDiagonalNormal, StandardNormal
 from nflows.transforms.base import CompositeTransform
 from nflows.transforms.autoregressive import MaskedAffineAutoregressiveTransform
-from nflows.transforms.permutations import ReversePermutation, RandomPermutation
+from nflows.transforms.permutations import ReversePermutation
 from nflows.transforms.coupling import AffineCouplingTransform, PiecewiseRationalQuadraticCouplingTransform
 from nflows.transforms.lu import LULinear
-from nflows.transforms.nonlinearities import PiecewiseRationalQuadraticCDF
-from nflows.transforms.splines import rational_quadratic_spline
 
 
 class DeepSet(nn.Module):
@@ -75,34 +73,6 @@ class Spline_net(nn.Module):
         layers = []
         for i in range(n_hidden_layers):
             layers.append(nn.Linear(current_dim, hidden_size))
-            layers.append(nn.Dropout(p=dropout))
-            layers.append(activation_layer)
-            current_dim = hidden_size
-        layers.append(nn.Linear(current_dim, self.emb_dim))
-        self.net = nn.Sequential(*layers)
-
-
-    def forward(self, x, context=None):
-        if context != None:
-            context = self.ds(context)
-            x = torch.cat((x,context), 1)
-        x = self.net(x)
-        return x
-
-class KAN_net(nn.Module):
-    def __init__(self, input_size, emb_size, hidden_size, context_size, encoder, n_hidden_layers=3, dropout=.1, activation_layer=torch.nn.Mish()):
-        super().__init__()
-        self.input_dim = input_size
-        self.hidden_dim = hidden_size
-        self.activation = activation_layer
-        self.sigmoid = torch.nn.Sigmoid()
-        self.emb_dim = emb_size  
-        if context_size != 0:
-            self.ds = encoder
-        current_dim = input_size + context_size 
-        layers = []
-        for i in range(n_hidden_layers):
-            layers.append(ekan.KANLinear(current_dim, hidden_size))
             layers.append(nn.Dropout(p=dropout))
             layers.append(activation_layer)
             current_dim = hidden_size
@@ -199,8 +169,7 @@ class Nu_flow(Flow):
                            encoder = encoder,
                            n_hidden_layers = _n_hidden_layers,
                            dropout = _dropout,
-                           context_size = context_size
-                           
+                           context_size = context_size     
             )
         for _ in range(num_layers):
             _transforms.append(PiecewiseRationalQuadraticCouplingTransform(mask = _mask, transform_net_create_fn = create_spline_net, tails = "linear", tail_bound = 4.0))
