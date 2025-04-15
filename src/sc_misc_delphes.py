@@ -97,7 +97,7 @@ def calculate_cosine_theory(X, y):
     phi_q = np.array(X['Phi_LJ'])
     M = np.array(X['M_LJ'])
     p4j2 = vector.arr({"pt": pt_q, "eta": eta_q, "phi": phi_q, "M": M})
-
+    
     p_phi_x = np.array(y['Px_DMGen'])
     p_phi_y = np.array(y['Py_DMGen'])
     p_phi_z = np.array(y['Pz_DMGen'])
